@@ -1,0 +1,365 @@
+/*
+ * layout.css
+ * ----------
+ * Guia rápido:
+ * - Arquivo focado em estrutura e responsividade.
+ * - Mobile-first: regras base atendem celular.
+ * - Desktop começa no breakpoint @media (min-width: 768px).
+ * - Evite estilos visuais detalhados aqui; use components.css.
+ */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-glass) transparent;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: radial-gradient(circle at 15% 50%, var(--bg-grad-1), var(--bg-dark) 52%, var(--bg-grad-2) 100%);
+  color: var(--text-main);
+  font-family: var(--font-main);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: background 0.5s ease;
+}
+
+svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+}
+
+.main-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  margin-bottom: 64px;
+}
+
+.view-section {
+  display: none;
+  flex: 1;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.view-section.active {
+  display: flex;
+}
+
+.sidebar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 64px;
+  z-index: 20;
+  display: flex;
+  border-top: 1px solid var(--border-glass);
+}
+
+.brand,
+.sidebar-footer {
+  display: none;
+}
+
+.nav-menu {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+}
+
+.nav-item {
+  border: 0;
+  background: transparent;
+  color: var(--text-muted);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 4px;
+  font: inherit;
+}
+
+.nav-item .hide-collapsed {
+  font-size: 0.68rem;
+}
+
+.nav-item.active {
+  color: var(--md-primary);
+  border-top: 3px solid var(--md-primary);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.nav-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  min-height: 18px;
+  padding: 0 6px;
+  border-radius: 999px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  background: var(--danger-red);
+  color: #fff;
+}
+
+.toolbar {
+  padding: 12px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--border-glass);
+  flex-shrink: 0;
+}
+
+.search-wrap {
+  position: relative;
+  flex: 1 1 220px;
+  display: flex;
+  align-items: center;
+}
+
+.search-wrap .input-glass {
+  padding-left: 38px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px;
+  color: var(--text-muted);
+}
+
+.bulk-actions {
+  padding: 12px;
+}
+
+.bulk-controls {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.bulk-controls > * {
+  flex: 1 1 140px;
+}
+
+.workspace {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.stats-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  flex-wrap: wrap;
+}
+
+.grid-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.calendar-toolbar {
+  justify-content: space-between;
+}
+
+.month-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.month-nav h2 {
+  min-width: 140px;
+  text-align: center;
+  font-size: 1.05rem;
+  color: var(--md-primary);
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.calendar-header-grid {
+  margin-bottom: 6px;
+}
+
+.settings-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+.toolbar-action-right {
+  margin-left: auto;
+}
+
+.settings-title,
+.danger-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.danger-title {
+  color: var(--danger-red);
+}
+
+.mobile-fab-container {
+  position: fixed;
+  right: 12px;
+  bottom: 78px;
+  z-index: 19;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.event-row,
+.event-actions {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+@media (min-width: 768px) {
+  body {
+    flex-direction: row;
+  }
+
+  .main-wrapper {
+    margin-bottom: 0;
+  }
+
+  .sidebar {
+    position: relative;
+    width: 84px;
+    min-width: 84px;
+    height: 100vh;
+    border-top: 0;
+    border-right: 1px solid var(--border-glass);
+    flex-direction: column;
+    transition: width 0.3s ease;
+  }
+
+  .sidebar .brand,
+  .sidebar .sidebar-footer {
+    display: flex;
+  }
+
+  .sidebar.collapsed {
+    width: 84px;
+    min-width: 84px;
+  }
+
+  .sidebar:not(.collapsed) {
+    width: 260px;
+    min-width: 260px;
+  }
+
+  .sidebar .brand {
+    align-items: center;
+    gap: 12px;
+    padding: 18px;
+    border-bottom: 1px solid var(--border-glass);
+    color: var(--md-primary);
+  }
+
+  .sidebar.collapsed .hide-collapsed {
+    display: none;
+  }
+
+  .sidebar:not(.collapsed) .hide-collapsed {
+    display: inline;
+  }
+
+  .nav-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 14px 0;
+    flex: 1;
+  }
+
+  .nav-item {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 12px 18px;
+    border-left: 3px solid transparent;
+  }
+
+  .nav-item .hide-collapsed {
+    font-size: 0.92rem;
+  }
+
+  .nav-item.active {
+    border-top: 0;
+    border-left-color: var(--md-primary);
+  }
+
+  .sidebar-footer {
+    border-top: 1px solid var(--border-glass);
+    padding: 12px;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .mobile-fab-container {
+    display: none;
+  }
+
+  .workspace {
+    padding: 18px 22px;
+  }
+
+  .toolbar {
+    padding: 14px 18px;
+  }
+
+  .grid-layout {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+
+  .settings-grid {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  }
+
+  .event-row {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .event-actions {
+    grid-template-columns: 1fr 1fr;
+  }
+}

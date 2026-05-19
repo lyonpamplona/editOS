@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="default">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VCF OS & Agenda</title>
+
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#ff6600" id="meta-theme-color">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="assets/icon-192.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Fira+Code:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/themes.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+  <noscript>Ative o JavaScript para usar o VCF OS.</noscript>
+
+  <!-- Sprite de ícones SVG reutilizados em toda a interface -->
+  <svg style="display:none;">
+    <symbol id="icon-menu" viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></symbol>
+    <symbol id="icon-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><polyline points="17 11 19 13 23 9"/></symbol>
+    <symbol id="icon-calendar" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></symbol>
+    <symbol id="icon-trash" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></symbol>
+    <symbol id="icon-upload" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></symbol>
+    <symbol id="icon-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></symbol>
+    <symbol id="icon-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></symbol>
+    <symbol id="icon-plus" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></symbol>
+    <symbol id="icon-chevron-down" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></symbol>
+    <symbol id="icon-refresh-cw" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></symbol>
+    <symbol id="icon-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></symbol>
+    <symbol id="icon-typography" viewBox="0 0 24 24"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></symbol>
+    <symbol id="icon-theme-drop" viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></symbol>
+  </svg>
+
+  <!-- Navegação principal (desktop: lateral, mobile: inferior) -->
+  <aside class="sidebar glass-panel" id="sidebar">
+    <div class="brand">
+      <button class="btn-icon" onclick="toggleSidebar()" title="Alternar Menu" aria-label="Alternar Menu">
+        <svg><use href="#icon-menu"/></svg>
+      </button>
+      <span class="hide-collapsed">VCF OS</span>
+    </div>
+
+    <div class="nav-menu">
+      <button type="button" class="nav-item active" onclick="switchTab('contacts', this)" title="Contatos VCF">
+        <svg><use href="#icon-users"/></svg> <span class="hide-collapsed">Contatos</span>
+      </button>
+      <button type="button" class="nav-item" onclick="switchTab('agenda', this)" title="Agenda & Eventos">
+        <svg><use href="#icon-calendar"/></svg> <span class="hide-collapsed">Agenda</span>
+      </button>
+      <button type="button" class="nav-item" onclick="switchTab('trash', this)" title="Lixeira">
+        <svg><use href="#icon-trash"/></svg>
+        <span class="hide-collapsed">Lixeira</span>
+        <span id="trash-count" class="hide-collapsed nav-badge">0</span>
+      </button>
+      <button type="button" class="nav-item" onclick="switchTab('settings', this)" title="Configurações">
+        <svg><use href="#icon-settings"/></svg> <span class="hide-collapsed">Ajustes</span>
+      </button>
+    </div>
+
+    <div class="sidebar-footer">
+      <button class="sidebar-btn btn-upload" onclick="document.getElementById('file-upload').click()" title="Importar VCF">
+        <svg><use href="#icon-upload"/></svg> <span class="hide-collapsed">Importar VCF</span>
+      </button>
+      <button class="sidebar-btn btn-download" onclick="downloadUpdatedVCF()" title="Exportar Base">
+        <svg><use href="#icon-download"/></svg> <span class="hide-collapsed">Exportar Base</span>
+      </button>
+    </div>
+  </aside>
+
+  <input type="file" id="file-upload" accept=".vcf" hidden onchange="handleFileUpload(event)">
+
+  <div class="mobile-fab-container" aria-hidden="true">
+    <button class="fab fab-upload" onclick="document.getElementById('file-upload').click()" title="Importar VCF" aria-label="Importar VCF">
+      <svg><use href="#icon-upload"/></svg>
+    </button>
+    <button class="fab fab-download" onclick="downloadUpdatedVCF()" title="Exportar Base" aria-label="Exportar Base">
+      <svg><use href="#icon-download"/></svg>
+    </button>
+  </div>
+
+  <!-- Conteúdo principal dividido por abas -->
+  <main class="main-wrapper">
+    <!-- Aba Contatos -->
+    <section id="view-contacts" class="view-section active">
+      <div class="toolbar glass-panel">
+        <div class="search-wrap">
+          <svg class="search-icon"><use href="#icon-search"/></svg>
+          <input type="text" id="search-box" class="input-glass" placeholder="Buscar por nome ou telefone" oninput="applyFilters()">
+        </div>
+        <div class="alphabet-bar" id="alphabet-container"></div>
+      </div>
+
+      <div id="bulk-toolbar" class="bulk-actions">
+        <span id="selected-count" class="selected-count">0 selecionados</span>
+        <div class="bulk-controls">
+          <select id="bulk-action-type" class="input-glass" onchange="toggleBulkInputs()">
+            <option value="prefix">Adicionar Prefixo</option>
+            <option value="replace">Substituir Palavra</option>
+            <option value="clean_wa">Sanitizar Evolution/WAHA</option>
+          </select>
+          <input type="text" id="bulk-input-val" class="input-glass" placeholder="Texto alvo...">
+          <input type="text" id="bulk-input-replace" class="input-glass" placeholder="Substituir por..." style="display:none;">
+          <button class="btn btn-primary" onclick="applyBulkAction()">Aplicar</button>
+          <button class="btn btn-danger" onclick="deleteSelected()"><svg><use href="#icon-trash"/></svg> Apagar</button>
+          <button class="btn btn-glass" onclick="clearSelection()">Cancelar</button>
+        </div>
+      </div>
+
+      <div class="workspace">
+        <div class="stats-bar">
+          <label class="checkbox-container">
+            <input type="checkbox" id="select-all-checkbox" onchange="toggleSelectAll(this)">
+            <span>Selecionar visíveis</span>
+          </label>
+          <div>Total: <span id="stat-total" class="badge">0</span> | Exibindo: <span id="stat-filtered" class="badge">0</span></div>
+        </div>
+        <div class="grid-layout" id="contact-list"></div>
+        <button id="btn-load-more" class="btn btn-glass" onclick="loadMore()" style="display:none; margin: 16px auto 0;">Carregar mais 100</button>
+      </div>
+    </section>
+
+    <!-- Aba Agenda -->
+    <section id="view-agenda" class="view-section">
+      <div class="toolbar glass-panel calendar-toolbar">
+        <div class="month-nav">
+          <button class="btn btn-glass" onclick="changeMonth(-1)">&lt;</button>
+          <h2 id="calendar-month-year">Mês Ano</h2>
+          <button class="btn btn-glass" onclick="changeMonth(1)">&gt;</button>
+        </div>
+        <button class="btn btn-primary" onclick="openEventModal()"><svg><use href="#icon-plus"/></svg> Novo Evento</button>
+      </div>
+      <div class="workspace">
+        <div class="calendar-grid calendar-header-grid">
+          <div class="day-name">Dom</div><div class="day-name">Seg</div><div class="day-name">Ter</div>
+          <div class="day-name">Qua</div><div class="day-name">Qui</div><div class="day-name">Sex</div><div class="day-name">Sáb</div>
+        </div>
+        <div class="calendar-grid" id="calendar-body"></div>
+      </div>
+    </section>
+
+    <!-- Aba Lixeira -->
+    <section id="view-trash" class="view-section">
+      <div class="toolbar glass-panel">
+        <h3 class="danger-title"><svg><use href="#icon-trash"/></svg> Lixeira de Contatos</h3>
+        <div class="toolbar-action-right">
+          <button class="btn btn-danger" onclick="emptyTrash()">Esvaziar Lixeira</button>
+        </div>
+      </div>
+      <div class="workspace">
+        <div class="grid-layout" id="trash-list"></div>
+      </div>
+    </section>
+
+    <!-- Aba Ajustes -->
+    <section id="view-settings" class="view-section">
+      <div class="toolbar glass-panel">
+        <h2 class="settings-title"><svg><use href="#icon-settings"/></svg> Configurações do Sistema</h2>
+      </div>
+      <div class="workspace">
+        <div class="settings-grid">
+          <div class="settings-card glass-panel">
+            <h3><svg><use href="#icon-theme-drop"/></svg> Temas Visuais</h3>
+            <p>Escolha uma direção visual com prévia de contraste e estilo.</p>
+            <div class="theme-options">
+              <button class="theme-btn active" data-theme="default" onclick="setTheme('default', this)">
+                <span class="theme-preview t-default"><i></i><i></i><i></i></span>
+                <span class="theme-meta"><strong>Liquid OS</strong><small>Laranja técnico</small></span>
+              </button>
+              <button class="theme-btn" data-theme="cyberpunk" onclick="setTheme('cyberpunk', this)">
+                <span class="theme-preview t-cyberpunk"><i></i><i></i><i></i></span>
+                <span class="theme-meta"><strong>Cyberpunk</strong><small>Neon frio</small></span>
+              </button>
+              <button class="theme-btn" data-theme="hacker" onclick="setTheme('hacker', this)">
+                <span class="theme-preview t-hacker"><i></i><i></i><i></i></span>
+                <span class="theme-meta"><strong>Terminal</strong><small>Matrix clássico</small></span>
+              </button>
+              <button class="theme-btn" data-theme="dracula" onclick="setTheme('dracula', this)">
+                <span class="theme-preview t-dracula"><i></i><i></i><i></i></span>
+                <span class="theme-meta"><strong>Dracula</strong><small>Roxo escuro</small></span>
+              </button>
+              <button class="theme-btn" data-theme="synthwave" onclick="setTheme('synthwave', this)">
+                <span class="theme-preview t-synthwave"><i></i><i></i><i></i></span>
+                <span class="theme-meta"><strong>Synthwave</strong><small>Retro neon</small></span>
+              </button>
+              <button class="theme-btn" data-theme="ocean" onclick="setTheme('ocean', this)">
+                <span class="theme-preview t-ocean"><i></i><i></i><i></i></span>
+                <span class="theme-meta"><strong>Ocean</strong><small>Azul profundo</small></span>
+              </button>
+            </div>
+            <div class="color-picker-wrap">
+              <div class="color-pill">
+                <input type="color" id="custom-theme-color" value="#ff6600" aria-label="Cor customizada do tema">
+                <span>Cor customizada</span>
+              </div>
+              <code id="custom-color-value">#ff6600</code>
+            </div>
+          </div>
+
+          <div class="settings-card glass-panel">
+            <h3><svg><use href="#icon-typography"/></svg> Tipografia</h3>
+            <p>Defina a família de fonte com prévia visual de leitura.</p>
+            <div class="font-options">
+              <button class="font-btn active" data-font-key="jetbrains" onclick="setFont('JetBrainsMono NFP', 'JetBrains Mono', this)">
+                <span class="font-sample" style="font-family:'JetBrains Mono', monospace;">Aa 0123 VCF OS</span>
+                <span class="font-meta"><strong>JetBrains Mono</strong><small>Leitura limpa para edição</small></span>
+              </button>
+              <button class="font-btn" data-font-key="firacode" onclick="setFont('FiraCode Nerd Font', 'Fira Code', this)">
+                <span class="font-sample" style="font-family:'Fira Code', monospace;">Aa 0123 VCF OS</span>
+                <span class="font-meta"><strong>Fira Code</strong><small>Visual técnico e denso</small></span>
+              </button>
+              <button class="font-btn" data-font-key="spacemono" onclick="setFont('SpaceMono NFP', 'Space Mono', this)">
+                <span class="font-sample" style="font-family:'Space Mono', monospace;">Aa 0123 VCF OS</span>
+                <span class="font-meta"><strong>Space Mono</strong><small>Geometria retrô terminal</small></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal de criação de eventos -->
+  <div id="event-modal" class="modal-overlay">
+    <div class="modal-content glass-panel">
+      <h3>Adicionar Evento</h3>
+      <div class="form-group">
+        <label>Título do Evento</label>
+        <input type="text" id="ev-title" class="input-glass">
+      </div>
+      <div class="event-row">
+        <div class="form-group">
+          <label>Data</label>
+          <input type="date" id="ev-date" class="input-glass">
+        </div>
+        <div class="form-group">
+          <label>Hora</label>
+          <input type="time" id="ev-time" class="input-glass">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Vincular Contato (Opcional)</label>
+        <select id="ev-contact" class="input-glass">
+          <option value="">Nenhum</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Tag</label>
+        <select id="ev-tag" class="input-glass">
+          <option value="tag-default">Padrão</option>
+          <option value="tag-work">Trabalho</option>
+          <option value="tag-personal">Pessoal</option>
+        </select>
+      </div>
+      <div class="event-actions">
+        <button class="btn btn-glass" onclick="closeEventModal()">Cancelar</button>
+        <button class="btn btn-primary" onclick="saveEvent()">Salvar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Container global de toasts -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Modal de changelog pós-atualização -->
+  <div id="changelog-modal" class="modal-overlay">
+    <div class="modal-content glass-panel changelog-content">
+      <h3>Painel Atualizado</h3>
+      <p class="changelog-lead">Foram aplicadas melhorias nesta versão:</p>
+      <ul id="changelog-list" class="changelog-list"></ul>
+      <div class="changelog-actions">
+        <a href="./CHANGELOG.md" target="_blank" rel="noopener noreferrer" class="btn btn-glass">Abrir CHANGELOG.md</a>
+        <button class="btn btn-primary" onclick="closeChangelogModal(true)">Entendi</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/vcf-core.js"></script>
+  <script src="js/calendar.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

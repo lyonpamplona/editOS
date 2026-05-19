@@ -1,0 +1,84 @@
+/*
+ * themes.css
+ * ----------
+ * Guia rápido:
+ * - :root define a base visual padrão do sistema.
+ * - [data-theme="..."] sobrescreve variáveis para cada tema.
+ * - Para criar novo tema:
+ *   1) copie um bloco existente [data-theme="nome"].
+ *   2) ajuste cores de --md-primary, --bg-*, --text-*.
+ *   3) adicione o botão correspondente em index.html (seção Ajustes).
+ */
+:root {
+  --md-primary: #ff6600;
+  --md-primary-hover: #ff7a22;
+  --md-on-primary: #000;
+  --wa-green: #00a884;
+  --danger-red: #ff4444;
+  --info-blue: #00bfff;
+  --bg-dark: #0b1014;
+  --bg-grad-1: #1a2a3a;
+  --bg-grad-2: #201010;
+  --bg-panel: rgba(17, 27, 33, 0.45);
+  --border-glass: rgba(255, 255, 255, 0.08);
+  --text-main: #e9edef;
+  --text-muted: #8696a0;
+  --font-main: 'JetBrainsMono NFP', 'JetBrains Mono', monospace;
+}
+
+[data-theme="cyberpunk"] {
+  --md-primary: #00f0ff;
+  --md-primary-hover: #5dffff;
+  --bg-dark: #050510;
+  --bg-grad-1: #2a0a2a;
+  --bg-grad-2: #001a22;
+  --bg-panel: rgba(10, 10, 25, 0.55);
+  --text-main: #e0f8ff;
+}
+
+[data-theme="hacker"] {
+  --md-primary: #00ff00;
+  --md-primary-hover: #33ff33;
+  --bg-dark: #000;
+  --bg-grad-1: #001100;
+  --bg-grad-2: #000500;
+  --bg-panel: rgba(0, 20, 0, 0.65);
+  --text-main: #00ff00;
+  --text-muted: #008800;
+  --border-glass: rgba(0, 255, 0, 0.15);
+}
+
+[data-theme="dracula"] {
+  --md-primary: #ff79c6;
+  --md-primary-hover: #ff92d0;
+  --bg-dark: #282a36;
+  --bg-grad-1: #44475a;
+  --bg-grad-2: #191a21;
+  --bg-panel: rgba(40, 42, 54, 0.75);
+  --text-main: #f8f8f2;
+  --text-muted: #6272a4;
+}
+
+[data-theme="synthwave"] {
+  --md-primary: #ff00ff;
+  --md-primary-hover: #ff4dff;
+  --bg-dark: #120024;
+  --bg-grad-1: #2d004d;
+  --bg-grad-2: #090011;
+  --bg-panel: rgba(30, 0, 50, 0.6);
+  --text-main: #ffccff;
+}
+
+[data-theme="ocean"] {
+  --md-primary: #0088ff;
+  --md-primary-hover: #33aaff;
+  --bg-dark: #001122;
+  --bg-grad-1: #002244;
+  --bg-grad-2: #000511;
+  --bg-panel: rgba(0, 20, 40, 0.6);
+  --text-main: #cceeff;
+}
+
+[data-theme="custom"] {
+  --md-primary-hover: color-mix(in srgb, var(--md-primary) 80%, #fff);
+}
